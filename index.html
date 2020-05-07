@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+
+
+  <!-- JS below here -->
+  <script>
+    const browserWindow = document.querySelector('body');
+    const gridContainer = document.createElement('div');
+    const numberOfSquares = 16;
+    let clr;
+    // const randomColor = Math.floor(Math.random()*16777215).toString(16);
+
+    browserWindow.appendChild(gridContainer);
+    
+    browserWindow.style.backgroundColor = 'blue';
+
+    gridContainer.style.width = '500px';
+    gridContainer.style.height = '500px';
+    gridContainer.style.backgroundColor = 'yellow';
+    gridContainer.style.padding = '10px';
+    gridContainer.id = 'container';
+    gridContainer.style.display = 'grid';
+    gridContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
+    gridContainer.style.gridTemplateRows = 'repeat(4, 1fr)';
+    gridContainer.style.margin = 'auto';
+
+    
+    for (let i = 0; i < numberOfSquares; i++) {
+        const gridSquare =  document.createElement('div');
+        gridSquare.style.backgroundColor = 'black';
+        gridContainer.appendChild(gridSquare);
+        gridSquare.className = 'square';
+        gridSquare.id = `square${i+1}`;
+    }
+
+    
+    for (let j = 0; j < numberOfSquares; j++) {
+        let squares = gridContainer.getElementsByClassName('square');
+        squares[j].addEventListener('mouseover', hover);
+        // squares[j].addEventListener('mouseout', off);
+
+        function hover () {
+            squares[j].style.backgroundColor = '#'+displayColors();
+        }
+
+        /* function off () {
+            squares[j].style.backgroundColor = 'yellow';
+        } */
+
+
+    }
+
+
+
+    /* 
+    attempt at iterating through colors
+    
+    function displayColors() {
+    var hex1;
+    var hex2;
+    var hex3;
+    var clr;
+    var steps = [
+        '00',
+        '33',
+        '66',
+        '99',
+        'cc',
+        'ff' 
+    ];
+    var arrLength = steps.length;
+    var counter = 1; // Make sure there are 216 colors displayed
+
+    for (var a = 0; a < arrLength; a++) {
+        for (var b = 0; b < arrLength; b++) {
+            for (var c = 0; c < arrLength; c++) {
+                hex1 = steps[a];
+                hex2 = steps[b];
+                hex3 = steps[c];
+                clr = hex1 + hex2 + hex3;
+                console.log(clr);
+                counter++;
+            }
+        }
+    }
+    } */
+
+  </script>
+</body>
+</html>
