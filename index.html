@@ -31,7 +31,7 @@
     const microButton = document.getElementById('micro'); */
 
     const gridContainer = document.createElement('div');
-    let numberOfRows = 8;
+    let numberOfRows = 4;
     let numberOfSquares = numberOfRows * numberOfRows;
     // let currentColor;
     // let clr;
@@ -48,10 +48,24 @@
     gridUI.style.marginBottom = '24px';
 
     document.getElementById('huge').addEventListener('click', function() {
-        numberOfRows = 4;
-        numberOfSquares = 16;
-        console.log('clicked');
-    })
+        drawGrid(4, 16);
+    });
+
+    document.getElementById('large').addEventListener('click', function() {
+        drawGrid(8, 64);
+    });
+
+    document.getElementById('medium').addEventListener('click', function() {
+        drawGrid(16, 256);
+    });
+
+    document.getElementById('small').addEventListener('click', function() {
+        drawGrid(32, 1024);
+    });
+
+    document.getElementById('micro').addEventListener('click', function() {
+        drawGrid(64, 4096);
+    });
 
     
     gridContainer.style.width = '500px';
@@ -63,28 +77,37 @@
     gridContainer.style.margin = 'auto';
     // gridContainer.style.gridTemplateColumns = 'repeat(4, 1fr)'; <-- did not work. Could not assign variables
     // gridContainer.style.gridTemplateRows = 'repeat(4, 1fr)';
-    gridContainer.style.setProperty('grid-template-columns', `repeat(${numberOfRows}, 1fr)`);
-    gridContainer.style.setProperty('grid-template-rows', `repeat(${numberOfRows}, 1fr)`);
 
+    // draw initial grid
     
-    for (let i = 0; i < numberOfSquares; i++) {
-        const gridSquare =  document.createElement('div');
-        gridSquare.style.backgroundColor = '#223344';
-        gridContainer.appendChild(gridSquare);
-        gridSquare.className = 'square';
-        gridSquare.id = `square${i+1}`;
-    }
-
+    drawGrid(4, 16);
     
-      for (let j = 0; j < numberOfSquares; j++) {
-        let squares = gridContainer.getElementsByClassName('square');
-        squares[j].addEventListener('mouseover', hover);
+    function drawGrid (numberOfRows, numberOfSquares) {
 
-        function hover () {
-            squares[j].style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+        gridContainer.style.setProperty('grid-template-columns', `repeat(${numberOfRows}, 1fr)`);
+        gridContainer.style.setProperty('grid-template-rows', `repeat(${numberOfRows}, 1fr)`);
+
+        for (let i = 0; i < numberOfSquares; i++) {
+            let gridSquare =  document.createElement('div');
+            // gridSquare.style.backgroundColor = '#223344';
+            gridContainer.appendChild(gridSquare);
+            gridSquare.className = 'square';
+            gridSquare.id = `square${i+1}`;
         }
 
+        for (let j = 0; j < numberOfSquares; j++) {
+            let squares = gridContainer.getElementsByClassName('square');
+            squares[j].style.backgroundColor = '#223344'
+            squares[j].addEventListener('mouseover', hover);
+
+            function hover () {
+            squares[j].style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            }
+
+        }
     }
+
+    
 
     /* for (let j = 0; j < numberOfSquares; j++) {
         let squares = gridContainer.getElementsByClassName('square');
