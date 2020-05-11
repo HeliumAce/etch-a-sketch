@@ -97,9 +97,27 @@
             squares[j].style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
             }
 
+            /* function hover () {
+                squares[j].style.backgroundColor = saturateColor(j, numberOfSquares);
+            }
+
         }
     }
 
+    function saturateColor (j, numberOfSquares) {
+        for (let k = 0; k < numberOfSquares; k++) {
+            let currentColor = allColors[j];
+            let currentSat = 0;
+            for (let l = 0; l < 10; l++) {
+                currentColor = `hsla(120,${currentSat+10}%,50%,0.3)`;
+            }
+        }
+        console.log(currentColor);
+    } */
+
+        }
+
+    }
 
   </script>
 </body>
